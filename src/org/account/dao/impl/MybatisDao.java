@@ -29,7 +29,7 @@ public class MybatisDao implements IAccountDao{
 	}
 
 	public List<Account> queryAllAccounts() {
-		 List<Account> accounts=accountMapper.queryAllAccounts();
+		List<Account> accounts=accountMapper.queryAllAccounts();
 		System.out.println(accounts);
 		return accounts;
 		
@@ -68,8 +68,8 @@ public class MybatisDao implements IAccountDao{
 //		t.deleteAccountByName("jjs");
 //		t.updateAccountByName(new Account("jjs","adsfaasd23","123123@qq.com"));
 //		t.addAccount(new Account("jjs","adsfa123","123123@qq.com"));
-//		t.queryAllAccounts();
-		System.out.println(t.queryAccountToLogin("zs", "111"));
+		t.queryAllAccounts();
+//		System.out.println(t.queryAccountToLogin("zs", "111"));
 		t.closeSession();
 //		t.queryAccountByName();
 	}

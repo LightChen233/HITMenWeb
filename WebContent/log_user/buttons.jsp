@@ -1,27 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="org.account.entity.PatternData"%>  
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <script>
-	var xmlhttp;
-	function check(){
-  	var name = document.getElementById("name").value;
-  	var url = "/HITMenProject/ShowDataServlet?name="+name;
-
-  	xmlhttp =new XMLHttpRequest(); 
-  	xmlhttp.onreadystatechange=getResult; //响应函数
-  	xmlhttp.open("GET",url,true);   //设置访问的页面
- 	xmlhttp.send();  //执行访问
+<script>
+var xmlhttp;
+function loadXMLDoc(url,cfunc)
+{
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlhttp=new XMLHttpRequest();
 	}
-
-	function getResult(){
-  		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    		document.getElementById('getResult').innerHTML=xmlhttp.responseText;
- 
+	else
+	{// IE6, IE5 浏览器执行代码
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-
+	xmlhttp.onreadystatechange=cfunc;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send();
+}
+function myFunction()
+{
+	loadXMLDoc("/HITMenProject/log_user/show_data.jsp",function(){
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			//	获得字符串形式的响应数据
+			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+		}
+	});
+}
 </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,6 +56,7 @@
 
   <body background="assets/img/backgd1.jpg" style="background-size: cover">
 
+
       <!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
@@ -62,7 +70,7 @@
               	  <h5 class="centered">用户名</h5>
               	  	
                   <li class="mt">
-                      <a href="index.jsp">
+                      <a href="index.html">
                           <i class="fa fa-">HOME</i>
                           <span></span>
                       </a>
@@ -74,7 +82,7 @@
                           <span>功能</span>
                       </a>
                       <ul class="sub">
-                          <li class="active"><a  href="buttons.jsp">手势识别</a></li>
+                          <li class="active"><a  href="buttons.html">手势识别</a></li>
                           <li><a  href="#">待补充</a></li>
                       </ul>
                   </li>
@@ -85,7 +93,7 @@
                           <span>用户信息</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="form_component.jsp">用户信息表</a></li>
+                          <li><a  href="form_component.html">用户信息表</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -108,18 +116,23 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
       <section id="main-content">
+      		<form action="">
       			<div class="col-lg-6 col-md-6 col-sm-12">
       				<div class="showback">
       					<h4><i class="fa fa-angle-right">基本功能</i> </h4>
 						<button type="button" class="btn btn-default" ><a href="#">开始训练</a></button>
-						<button type="submit" onclick="check()" class="btn btn-primary"><a href="#">预测手势</a></button>
+						<button type="button" onclick="myFunction()" class="btn btn-default"><a href="#">预测手势</a></button>
 						<button type="button" class="btn btn-info">待补充...</button>
 						<br/>
-						
+						<div id="myDiv">分析可能稍慢，请耐心等候...</div>
       				</div>
       			</div><!-- /col-lg-6 -->
+      		</form>
       </section><!-- /MAIN CONTENT -->
-	<span id="getResult"></span>
+
+
+  </section>
+
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jjquery-1.8.3.min.js"></script>

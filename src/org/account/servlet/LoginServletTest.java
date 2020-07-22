@@ -36,7 +36,7 @@ public class LoginServletTest extends HttpServlet {
 		String checkcodeSever=(String)request.getSession().getAttribute("CHECKCODE");
 		if(!checkcodeSever.equals(checkcodeClient)) {
 			request.setAttribute("error", "WrongCheckCode");
-        	request.getRequestDispatcher("/log_sign/login.jsp").forward(request,response);
+        	request.getRequestDispatcher("/HITMenProject/log_sign/login.jsp").forward(request,response);
 		}
         String name=request.getParameter("name");
         String password=request.getParameter("password");
@@ -55,7 +55,7 @@ public class LoginServletTest extends HttpServlet {
 //        	request.getRequestDispatcher("/log_user/index.jsp").forward(request,response);
         }else {
         	request.setAttribute("error", "NoAccount");
-        	request.getRequestDispatcher("/log_sign/login.jsp").forward(request,response);
+        	request.getRequestDispatcher("/HITMenProject/log_sign/login.jsp").forward(request,response);
         }
 	}
 

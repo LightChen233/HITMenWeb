@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<mappers>
 		<!-- 加载映射文件 -->
-		<mapper resource="org.account.mapper.AccountMapper"/>
+		<!--  <mapper resource="org.account.mapper.AccountMapper"/>-->
+		<mapper resource="org/account/mapper/accountMapper.xml"/>
 	</mappers>
 </configuration>
