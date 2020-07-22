@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.account.mapper.AccountMapper">
+	<select id="queryAccountByName" resultType="Account" parameterType="String">
+		select * from logindata where name = #{name}
+	</select>
+	<insert id="addAccount" parameterType="Account">
+		insert into logindata(name,password,email) values(#{name},#{password},#{email})
+	</insert>
+	<update id="updateAccountByName" parameterType="Account">
+		update logindata set password=#{password} , email=#{email} where name=#{name}
+	</update>
+	<delete id="deleteAccountByName" parameterType="String">
+		delete from logindata where name=#{name}
+	</delete>
+	<select id="queryAllAccounts" resultType="Account">
+		select * from logindata
+	</select>
+	<select id="queryAccountToLogin"  resultType="Account" parameterType="Account" >
+		select * from logindata where name= #{name} and password= #{password}
+	</select>
+</mapper>
